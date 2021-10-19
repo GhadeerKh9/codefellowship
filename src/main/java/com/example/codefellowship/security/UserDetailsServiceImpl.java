@@ -1,6 +1,7 @@
 package com.example.codefellowship.security;
 
-import com.example.codefellowship.models.ApplicationUser;
+import com.example.codefellowship.models.Application;
+import com.example.codefellowship.repositories.ApplicationUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,14 +17,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException {
-        ApplicationUser applicationUser =
+        Application application =
                 applicationUserRepository.findByUsername(username);
 
 
-        if (applicationUser == null) {
+        if (application == null) {
             throw new UsernameNotFoundException(username + " does not exist");
         }
-        return applicationUser;
+        return application;
     }
 
 }

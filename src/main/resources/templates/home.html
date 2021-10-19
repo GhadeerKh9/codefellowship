@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <link rel="stylesheet" href="home.css"/>
+</head>
+
+<style>
+.body{
+background-color: #DCBABA;}
+.title {
+color: white;
+
+background-color: #1F1F1F;
+color: white;
+text-align: center;
+height: 50px;
+}
+ul {
+<!--  list-style-type: none;-->
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: black;
+<!--  color: white;-->
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+
+</style>
+
+<body class="body">
+
+
+<header class="title">
+    <div class="home">
+
+        <ul class="nav navbar-nav">
+            <li>
+                <a th:href="@{/signup}">Sign Up</a>
+            </li>
+            <li>
+                <a  th:href="@{/login}">Log in</a>
+            </li>
+            <li>
+                <a th:href="@{http://localhost:8080/profile(id=${user})}">Profile</a>
+            </li>
+
+        </ul>
+
+
+    </div>
+</header>
+<main>
+    <h1>Hello! Welcome!</h1>
+</main>
+</body>
+
+</html>

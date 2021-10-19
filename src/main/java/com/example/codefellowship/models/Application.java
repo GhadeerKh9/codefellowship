@@ -8,8 +8,7 @@ import java.util.Collection;
 
 @Entity
 @Table(name = "userdata")
-
-public class ApplicationUser implements UserDetails {
+public class Application implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,8 +21,8 @@ public class ApplicationUser implements UserDetails {
     private String dateOfBirth;
     private String bio;
 
-    public ApplicationUser(){}
-    public ApplicationUser(String username, String password, String firstName, String lastName, String dateOfBirth, String bio) {
+    public Application(){}
+    public Application(String username, String password, String firstName, String lastName, String dateOfBirth, String bio) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
@@ -110,7 +109,7 @@ public class ApplicationUser implements UserDetails {
     }
     @Override
     public String toString() {
-        return "ApplicationUser{" +
+        return "Application{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
@@ -121,9 +120,5 @@ public class ApplicationUser implements UserDetails {
                 '}';
     }
 
-    public static class ApplicationUserRepository {
 
-
-
-    }
 }

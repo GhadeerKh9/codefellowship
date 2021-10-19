@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Title</title>
+</head>
+<style>
+
+.body{
+    background-color: #DCBABA;}
+     .title {
+
+       background-color: #1F1F1F;
+    color: white;
+    text-align: center;
+    height: 50px;
+        }
+
+        .profile{
+
+        width:60%;
+        margin-left: 20%;
+
+          text-align: center;
+
+        }
+</style>
+
+
+<body class="body">
+<h1 class="title">Profile</h1>
+<div class="profile">
+  <p>User Name :<span th:text="${username}"></span></p>
+
+  <p>First Name:<span th:text="${firstName}"></span></p>
+  <p>Last Name :<span th:text="${lastName}"></span></p>
+  <p>Date Of Birth:<span th:text="${dateOfBirth}"></span></p>
+  <p>A brief Bio :<span th:text="${bio}"></span></p>
+  <img src="https://i.pinimg.com/236x/d5/f3/dd/d5f3dd9c7b7939da57995d505fca511f.jpg" alt="profile img" />
+</div>
+</body>
+
+</html>
