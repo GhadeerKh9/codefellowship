@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="post.css">
+
+</head>
+<body>
+
+<div>
+    <h1>User Profile</h1>
+    <h2>Name</h2>
+    <p th:text="${allUserData.username}"></p>
+    <h2>Date of birth</h2>
+    <p th:text="${allUserData.dateOfBirth}"></p>
+    <h2>bio</h2>
+    <p th:text="${allUserData.bio}"></p>
+</div>
+
+
+<a href="/allUsers"> See All Users </a>
+
+
+<form action="/userprofile" method="post">
+
+    <h1>Add a posts</h1>
+    <input type="text" name="body" id="body"/> <br/>
+    <div class="postButton">
+        <button type="submit">post</button>
+    </div>
+</form>
+
+
+<div>
+    <h3>User Posts</h3>
+    <div  th:each="post:${allUserData.post}">
+        <div >
+            <h5  th:text="${'post' + post.id}"></h5>
+            <h6  th:text="${post.createdAt}"></h6>
+            <p  th:text="${post.body}"></p>
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>

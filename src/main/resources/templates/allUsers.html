@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="allUsers.css">
+
+</head>
+<body>
+
+<div >
+    <h1> All Users</h1>
+    <div  style="width: 18rem;" th:each="user:${AllUsers}">
+        <div >
+            <h6  th:text="${user.username}"></h6>
+            <p  th:text="${user.bio}"></p>
+        </div>
+        <form method="post" th:action="@{'/follow?id='+${user.id}}">
+
+            <button th:if="${userFollow.contains(user) != true and userInfo != user.username}" type="submit">Follow</button>
+        </form>
+
+    </div>
+    <a href="/feed"> See All Feed </a>
+
+</div>
+
+
+</body>
+</html>

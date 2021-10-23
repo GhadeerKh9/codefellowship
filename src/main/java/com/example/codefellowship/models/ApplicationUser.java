@@ -5,10 +5,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "userdata")
-public class Application implements UserDetails {
+
+public class ApplicationUser implements UserDetails {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,16 +24,44 @@ public class Application implements UserDetails {
     private String lastName;
     private String dateOfBirth;
     private String bio;
+    @OneToMany(mappedBy = "applicationUser")
+    private List<Post> post;
 
-    public Application(){}
-    public Application(String username, String password, String firstName, String lastName, String dateOfBirth, String bio) {
+
+
+    @ManyToMany(cascade = {CascadeType.ALL})
+
+    @JoinTable(name = "followersfollowingtable",
+
+            joinColumns = {
+                    @JoinColumn(name="followerid")
+            },
+
+
+            inverseJoinColumns = {
+                    @JoinColumn(name="followingid")
+            })
+
+
+    private Set<ApplicationUser> followers = new HashSet<>();
+
+    @ManyToMany(mappedBy = "followers")
+    private Set <ApplicationUser> following = new HashSet<>();
+
+    ////////////////
+
+    public ApplicationUser(){}
+    public ApplicationUser(String username, String password, String firstName, String lastName, String dateOfBirth, String bio) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.bio = bio;
+
+
     }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
@@ -107,18 +139,30 @@ public class Application implements UserDetails {
     public void setBio(String bio) {
         this.bio = bio;
     }
-    @Override
-    public String toString() {
-        return "Application{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", dateOfBirth='" + dateOfBirth + '\'' +
-                ", bio='" + bio + '\'' +
-                '}';
+
+    public List<Post> getPost() {
+        return post;
     }
 
+    public void setPost(List<Post> post) {
+        this.post = post;
+    }
+
+
+    public Set<ApplicationUser> getFollowers() {
+        return followers;
+    }
+
+    public void setFollowers(Set<ApplicationUser> followers) {
+        this.followers = followers;
+    }
+
+    public Set<ApplicationUser> getFollowing() {
+        return following;
+    }
+
+    public void setFollowing(Set<ApplicationUser> following) {
+        this.following = following;
+    }
 
 }
