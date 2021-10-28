@@ -9,17 +9,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.security.Principal;
 
 @Controller
-public class mainController {
+public class HomeController {
 
 
     @Autowired
     ApplicationUserRepository applicationUserRepository;
-
     @GetMapping("/")
-    public String homePage(Principal principal, Model model){
-
+    public String getHome(Principal principal, Model model){
+        try{
             model.addAttribute("username",principal.getName());
-
+        }catch (NullPointerException e){
+            model.addAttribute("username","No user");
+        }
         return "home";
     }
 }

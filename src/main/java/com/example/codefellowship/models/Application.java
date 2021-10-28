@@ -11,7 +11,7 @@ import java.util.Set;
 
 @Entity
 
-public class ApplicationUser implements UserDetails {
+public class Application implements UserDetails {
 
 
     @Id
@@ -43,15 +43,15 @@ public class ApplicationUser implements UserDetails {
             })
 
 
-    private Set<ApplicationUser> followers = new HashSet<>();
+    private Set<Application> followers = new HashSet<>();
 
     @ManyToMany(mappedBy = "followers")
-    private Set <ApplicationUser> following = new HashSet<>();
+    private Set <Application> following = new HashSet<>();
 
     ////////////////
 
-    public ApplicationUser(){}
-    public ApplicationUser(String username, String password, String firstName, String lastName, String dateOfBirth, String bio) {
+    public Application(){}
+    public Application(String username, String password, String firstName, String lastName, String dateOfBirth, String bio) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
@@ -149,19 +149,19 @@ public class ApplicationUser implements UserDetails {
     }
 
 
-    public Set<ApplicationUser> getFollowers() {
+    public Set<Application> getFollowers() {
         return followers;
     }
 
-    public void setFollowers(Set<ApplicationUser> followers) {
+    public void setFollowers(Set<Application> followers) {
         this.followers = followers;
     }
 
-    public Set<ApplicationUser> getFollowing() {
+    public Set<Application> getFollowing() {
         return following;
     }
 
-    public void setFollowing(Set<ApplicationUser> following) {
+    public void setFollowing(Set<Application> following) {
         this.following = following;
     }
 

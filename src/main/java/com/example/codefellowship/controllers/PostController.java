@@ -1,7 +1,6 @@
 package com.example.codefellowship.controllers;
 
-
-import com.example.codefellowship.models.ApplicationUser;
+import com.example.codefellowship.models.Application;
 import com.example.codefellowship.models.Post;
 import com.example.codefellowship.repositories.ApplicationUserRepository;
 import com.example.codefellowship.repositories.PostRepository;
@@ -25,45 +24,49 @@ public class PostController {
     PostRepository postRepository;
 
 
-    @GetMapping("/userprofile")
+    @GetMapping("/myprofile")
     public String UserProfile(Principal principal , Model model) {
         if (applicationUserRepository != null) {
             model.addAttribute("userData", principal.getName());
             model.addAttribute("allUserData", applicationUserRepository.findByUsername(principal.getName()));
         } else {
             model.addAttribute("userData", "No user");
-            model.addAttribute("allUserData", new ApplicationUser());
+            model.addAttribute("allUserData", new Application());
         }
-        return "user.html";
+        return "user";
     }
 
-    @PostMapping("/userprofile")
+    @PostMapping("/myprofile")
     public RedirectView addNewPost(Principal principal , @RequestParam String body){
         Post post = new Post(body , applicationUserRepository.findByUsername(principal.getName()));
         postRepository.save(post);
-        return new RedirectView("/userprofile");
+        return new RedirectView("/myprofile");
     }
 
-
+//////////////////////////////////////////////
     @GetMapping("/allUsers")
     public String getAllUsers(Principal principal,Model model){
         try{
             model.addAttribute("userData",principal.getName());
             model.addAttribute("AllUsers",applicationUserRepository.findAll());
 
-            ApplicationUser user = applicationUserRepository.findByUsername(principal.getName());
+            Application user = applicationUserRepository.findByUsername(principal.getName());
             model.addAttribute("userFollow",user.getFollowers());
         }catch (NullPointerException e){
             model.addAttribute("userData","");
         }
-        return "allUsers.html";
+        return "allUsers";
     }
+
+
+    @GetMapping
+
 
 
     @PostMapping("/follow")
     public RedirectView addFollow(Principal principal, @RequestParam int id){
-        ApplicationUser user = applicationUserRepository.findByUsername(principal.getName());
-        ApplicationUser toFollow = applicationUserRepository.findById(id).get();
+        Application user = applicationUserRepository.findByUsername(principal.getName());
+        Application toFollow = applicationUserRepository.findById(id).get();
         user.getFollowers().add(toFollow);
 
         applicationUserRepository.save(user);
@@ -75,9 +78,9 @@ public class PostController {
     public String getFollowingInfo(Principal principal, Model model){
         try{
             model.addAttribute("userData",principal.getName());
-            ApplicationUser user = applicationUserRepository.findByUsername(principal.getName());
+            Application user = applicationUserRepository.findByUsername(principal.getName());
 
-            Set<ApplicationUser> userFollow = user.getFollowers();
+            Set<Application> userFollow = user.getFollowers();
 
             model.addAttribute("Allfollowing",userFollow);
         }catch (NullPointerException e){

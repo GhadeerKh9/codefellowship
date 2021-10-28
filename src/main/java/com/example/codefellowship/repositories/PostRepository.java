@@ -4,5 +4,5 @@ import com.example.codefellowship.models.Post;
 import org.springframework.data.repository.CrudRepository;
 
 public interface PostRepository extends CrudRepository<Post, Integer> {
-//    List<Post> findAllByUser (ApplicationUser applicationUser);
+//    List<Post> findAllByUser (Application applicationUser);
 }

@@ -1,18 +1,77 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Title</title>
-    <link rel="stylesheet" href="home.css">
-
+    <link rel="stylesheet" href="home.css"/>
 </head>
-<body>
 
-<h1>Welcome to CodeFellowship website</h1>
-<div class="a">
-    <a href="/signup">Sign Up Here </a>
-    <a href="/login">Log In Here </a>
-    <a href="/userprofile">user profile </a>
-</div>
+<style>
+.body{
+background-color: #DCBABA;}
+.title {
+color: white;
+
+background-color: #1F1F1F;
+color: white;
+text-align: center;
+height: 50px;
+}
+ul {
+<!--  list-style-type: none;-->
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: black;
+<!--  color: white;-->
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+
+</style>
+
+<body class="body">
+
+
+<header class="title">
+    <div class="home">
+
+        <ul class="nav navbar-nav">
+
+
+
+
+            <li>
+                <a href="/signup">Sign Up Here </a>
+            </li>
+            <li>
+                <a href="/login">Log In Here </a>
+            </li>
+            <li>
+                <a href="/myprofile">user profile </a>
+            </li>
+
+        </ul>
+
+
+    </div>
+</header>
+<main>
+    <h1>Hello! Welcome!</h1>
+</main>
 </body>
+
 </html>

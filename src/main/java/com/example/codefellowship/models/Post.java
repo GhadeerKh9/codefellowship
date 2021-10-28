@@ -11,10 +11,10 @@ public class Post {
     private String body;
     private  int createdAt;
     @ManyToOne
-    private ApplicationUser applicationUser;
+    private Application applicationUser;
 
 
-    public Post(String body, ApplicationUser applicationUser) {
+    public Post(String body, Application applicationUser) {
         this.body = body;
         this.applicationUser=applicationUser;
     }

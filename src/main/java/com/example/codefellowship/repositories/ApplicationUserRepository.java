@@ -1,8 +1,8 @@
 package com.example.codefellowship.repositories;
 
-import com.example.codefellowship.models.ApplicationUser;
+import com.example.codefellowship.models.Application;
 import org.springframework.data.repository.CrudRepository;
 
-public interface ApplicationUserRepository extends CrudRepository<ApplicationUser,Integer> {
-    public ApplicationUser findByUsername(String username);
+public interface ApplicationUserRepository extends CrudRepository<Application,Integer> {
+    public Application findByUsername(String username);
 }
