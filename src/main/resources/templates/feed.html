@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="allUsers.css">
+
+</head>
+<style>
+    .body {
+    background-color: #DCBABA;}
+    }
+</style>
+<body class="body">
+<div >
+    <div style="width: 18rem;" th:each="follower:${Allfollowing}">
+        <div>
+            <h6  th:text="${follower.username}"></h6>
+            <p  th:text="${follower.bio}"></p>
+            <p>Posts</p>
+            <ul>
+                <li th:each="post:${follower.post}" th:text="${post.body}"></li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

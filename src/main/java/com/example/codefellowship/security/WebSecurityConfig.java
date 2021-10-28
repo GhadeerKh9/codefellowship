@@ -1,5 +1,6 @@
 package com.example.codefellowship.security;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -34,7 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf()
                 .disable()
                 .authorizeRequests()
-                .antMatchers("/login", "/signup", "/")
+                .antMatchers( "/login", "/signup","/")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
@@ -46,9 +47,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureUrl("/error")
                 .and()
                 .logout()
-                .logoutUrl("/perform_logout")
-                .deleteCookies("JSESSIONID");
-
+                .logoutUrl("/perform_logout");
+//
+//        http
+//                .authorizeRequests()
+//                .antMatchers("/", "/signup", "/login").permitAll()
+//                .anyRequest().authenticated()
+//                .and()
+//                .formLogin()
+//                .loginPage("/login")
+//                .permitAll()
+//                .and()
+//                .logout()
+//                .permitAll();
 
     }
 }

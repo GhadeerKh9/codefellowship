@@ -5,10 +5,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "userdata")
+
 public class Application implements UserDetails {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,6 +24,31 @@ public class Application implements UserDetails {
     private String lastName;
     private String dateOfBirth;
     private String bio;
+    @OneToMany(mappedBy = "applicationUser")
+    private List<Post> post;
+
+
+
+    @ManyToMany(cascade = {CascadeType.ALL})
+
+    @JoinTable(name = "followersfollowingtable",
+
+            joinColumns = {
+                    @JoinColumn(name="followerid")
+            },
+
+
+            inverseJoinColumns = {
+                    @JoinColumn(name="followingid")
+            })
+
+
+    private Set<Application> followers = new HashSet<>();
+
+    @ManyToMany(mappedBy = "followers")
+    private Set <Application> following = new HashSet<>();
+
+    ////////////////
 
     public Application(){}
     public Application(String username, String password, String firstName, String lastName, String dateOfBirth, String bio) {
@@ -29,7 +58,10 @@ public class Application implements UserDetails {
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.bio = bio;
+
+
     }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
@@ -107,18 +139,30 @@ public class Application implements UserDetails {
     public void setBio(String bio) {
         this.bio = bio;
     }
-    @Override
-    public String toString() {
-        return "Application{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", dateOfBirth='" + dateOfBirth + '\'' +
-                ", bio='" + bio + '\'' +
-                '}';
+
+    public List<Post> getPost() {
+        return post;
     }
 
+    public void setPost(List<Post> post) {
+        this.post = post;
+    }
+
+
+    public Set<Application> getFollowers() {
+        return followers;
+    }
+
+    public void setFollowers(Set<Application> followers) {
+        this.followers = followers;
+    }
+
+    public Set<Application> getFollowing() {
+        return following;
+    }
+
+    public void setFollowing(Set<Application> following) {
+        this.following = following;
+    }
 
 }
